@@ -4,7 +4,6 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 var nodemailer = require('nodemailer');
 const port = 5500;
-const usersSignup =[];
 
 
 //get example

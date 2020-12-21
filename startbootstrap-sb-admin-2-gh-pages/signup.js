@@ -80,7 +80,7 @@ function RegisterValFunction(){
            }
           
            else
-               window.alert("Your Details are:\nEmail:"+email+"\n"+"Password:"+password);
+               window.alert("mail with the registration info sent to your mailbox");
           
         
     }

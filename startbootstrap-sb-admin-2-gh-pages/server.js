@@ -16,22 +16,23 @@ const client = new Client({
 
 
 //======================== GET REQUESTS SECTION ========================//
-//get register page
+
+//======================== GET REGISTER PAGE ========================//
 app.get("/signup",function(req,res){
   res.sendFile(__dirname+"/register.html",);
     });
 
-//get login page
+//======================== GET LOGIN PAGE ========================//
 app.get("/login",function(req,res){
 res.sendFile(__dirname+"/login.html",);
   });
 
-  //get dashboard page
+  //======================== GET DASHBOARD PAGE ========================//
 app.get("/dashboard",function(req,res){
   res.sendFile(__dirname+"/index.html",);
     });
 
-    //get forgot-password page 
+    //======================== GET FORGOT-PASSWORD PAGE ========================//
 app.get("/forgotpassword",function(req,res){
   res.sendFile(__dirname+"/forgot-password.html",);
     });
@@ -46,11 +47,13 @@ app.get("/forgotpassword",function(req,res){
 //======================== POST REQUESTS SECTION ========================//
 
 app.post("/signup",function(req,res){
+  //======================== VARIABLES SECTION ========================//
   let firstname = req.body.FirstName;
   let lastname = req.body.LastName;
   let userSignUp=req.body.Email;
   let passSignUp=req.body.psw;
   let confirm=req.body.pswAgain;
+  //======================== VARIABLES SECTION END ========================//
  
 //======================== INSERT USER TO DATABASE UPON REGISTRATION SECTION ========================//
 client.query("INSERT INTO users(name, familyname, email, password)VALUES($1, $2, $3, crypt($4, gen_salt('md5')))",[firstname,lastname,userSignUp,passSignUp],
@@ -69,8 +72,10 @@ client.query("INSERT INTO users(name, familyname, email, password)VALUES($1, $2,
 
 
 
-//======================== SENDING MAIL SECTION ========================//
-//registration - email sending
+
+
+//======================== SENDING MAIL UPON REGISTRATION SECTION ========================//
+
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

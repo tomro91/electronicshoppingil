@@ -56,6 +56,19 @@ app.post("/signup",function(req,res){
   let promocodeForm = req.body.promo;
   //======================== VARIABLES SECTION END ========================//
  
+
+//======================== VALIDATE USER IS ALREADY IN THE DATABASE SECTION ========================//
+  client.query("SELECT * from users where email=$1",[userSignUp],
+  (err, res) => {
+    console.log(err, res);
+    var mail = res.rowCount;
+    console.log(mail);
+  }
+);
+
+//======================== VALIDATE USER IS ALREADY IN THE DATABASE SECTION END ========================//
+
+
 //======================== INSERT USER TO DATABASE UPON REGISTRATION SECTION ========================//
 client.query("INSERT INTO users(name, familyname, email,promocode, password)VALUES($1, $2, $3,$4, crypt($5, gen_salt('md5')))",[firstname,lastname,userSignUp,promocodeForm,passSignUp],
   (err, res) => {
@@ -104,6 +117,58 @@ client.query("INSERT INTO users(name, familyname, email,promocode, password)VALU
     });
 
     //======================== SENDING MAIL SECTION END ========================//
+
+
+    //validate that user is in database upon login
+    app.post("/login",function(req,res){
+      //======================== VARIABLES SECTION ========================//
+      let mailLogin=req.body.email;
+      let passLogin=req.body.passw;
+      //======================== VARIABLES SECTION END ========================//
+     
+    //======================== VALIDATE USER IS IN DATABASE SECTION ========================//
+    client.query("INSERT INTO users(name, familyname, email,promocode, password)VALUES($1, $2, $3,$4, crypt($5, gen_salt('md5')))",[firstname,lastname,userSignUp,promocodeForm,passSignUp],
+      (err, res) => {
+        console.log(err, res);
+      }
+    );
+  }); 
+    //======================== VALIDATE USER IS IN DATABASE SECTION END ========================//
+    
+    
+    
+    
+    
+    
+    
+    
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //======================== POST REQUESTS SECTION END ========================//

@@ -11,8 +11,12 @@ function RegisterValFunction(){
     var email= document.getElementById("exampleInputEmail").value;
     var password= document.getElementById("exampleInputPassword").value;
     var secondPassword=document.getElementById("exampleRepeatPassword").value;
+    var promoCode = document.getElementById("examplePromoCode").value;
+    var promoCodeField = document.getElementById("examplePromoCode");
     //email validation
     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  
+
     if(firstName=="")
     {
         firstNameField.focus();
@@ -78,9 +82,24 @@ function RegisterValFunction(){
                 repasswordField.title="passwords are not matched";
                return false;
            }
+
+           if(promoCode=="")
+           {
+               promoCodeField.focus();
+               promoCodeField.title="promoCode field empty!!"  
+               return false;
+           }
+       
+           if(!promoCode.match("3XCRt")&&!promoCode.match("4DFG")&&!promoCode.match("6DSQW"))
+           {
+               promoCodeField.focus();
+               promoCodeField.title="invalid promo code!!"  
+               return false;
+           }
           
-           else
-               window.alert("mail with the registration info sent to your mailbox");
-          
+        else
+        showModal();
+               //window.alert("mail with the registration info sent to your mailbox");
+          return true;
         
     }

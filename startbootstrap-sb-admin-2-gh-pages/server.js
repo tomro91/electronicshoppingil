@@ -53,14 +53,16 @@ app.post("/signup",function(req,res){
   let userSignUp=req.body.Email;
   let passSignUp=req.body.psw;
   let confirm=req.body.pswAgain;
+  let promocodeForm = req.body.promo;
   //======================== VARIABLES SECTION END ========================//
  
 //======================== INSERT USER TO DATABASE UPON REGISTRATION SECTION ========================//
-client.query("INSERT INTO users(name, familyname, email, password)VALUES($1, $2, $3, crypt($4, gen_salt('md5')))",[firstname,lastname,userSignUp,passSignUp],
+client.query("INSERT INTO users(name, familyname, email,promocode, password)VALUES($1, $2, $3,$4, crypt($5, gen_salt('md5')))",[firstname,lastname,userSignUp,promocodeForm,passSignUp],
   (err, res) => {
     console.log(err, res);
   }
 );
+
 //======================== INSERT USER TO DATABASE UPON REGISTRATION SECTION END ========================//
 
 
@@ -95,7 +97,6 @@ client.query("INSERT INTO users(name, familyname, email, password)VALUES($1, $2,
           if (error) {
             console.log(error);
           } else {
-            console.log(usersSignup);
             res.redirect("/login");
             console.log('Email sent: ' + info.response);
           }

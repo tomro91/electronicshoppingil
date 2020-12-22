@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script type = "text/javascript" src="signup.js"></script>
+    <script type = "text/javascript" src="modal.js"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -36,7 +37,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user"name="myForm" action="/signup" method="POST" onsubmit="RegisterValFunction()">
+                            <form class="user"name="myForm" action="/signup" method="POST" onsubmit="if(!RegisterValFunction()) return false">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
@@ -56,13 +57,36 @@
                                         <input type="password" class="form-control form-control-user"
                                             id="exampleInputPassword" placeholder="Password"name="psw"value=>
                                     </div>
+                              
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
                                             id="exampleRepeatPassword" placeholder="Repeat Password"name="pswAgain"value=>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="examplePromoCode"
+                                    placeholder="Have a Promo Code" name="promo" value=>
+                                    </div>
+                                </div>
+                                   
                                 <input class="btn btn-primary btn-user btn-block" style="display: block" type="submit" value="Register " id="signInBtn">
                                
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+   <h1>registration succesfully</h1>
+    <p>mail with the registration info sent to your mailbox</p>
+  </div>
+
+</div>
+
+
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google

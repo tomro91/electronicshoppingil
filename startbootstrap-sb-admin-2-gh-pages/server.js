@@ -14,6 +14,15 @@ const client = new Client({
   database: "postgres"
 })
 
+const client1 = new Client({
+  user: "postgres",
+  password: "Aa123456",
+  host: "localhost",
+  port: 5432,
+  database: "postgres"
+})
+
+
 
 //======================== GET REQUESTS SECTION ========================//
 
@@ -37,9 +46,16 @@ app.get("/forgotpassword",function(req,res){
   res.sendFile(__dirname+"/forgot-password.html",);
     });
 
-    //======================== GET REQUESTS SECTION END ========================//
-
-
+//======================== GET USER-ALREADY-EXISTS PAGE ========================//
+    app.get("/useralreadyexists",function(req,res){
+      res.sendFile(__dirname+"/404useralreadyexists.html",);
+        });
+  
+//======================== GET USER-NOT-FOUND PAGE ========================//
+app.get("/usernotfound",function(req,res){
+  res.sendFile(__dirname+"/usernotfound.html",);
+    });
+//======================== GET REQUESTS SECTION END ========================//
 
 
 
@@ -57,15 +73,17 @@ app.post("/signup",function(req,res){
   //======================== VARIABLES SECTION END ========================//
  
 
+
 //======================== VALIDATE USER IS ALREADY IN THE DATABASE SECTION ========================//
-  client.query("SELECT * from users where email=$1",[userSignUp],
-  (err, res) => {
-    console.log(err, res);
-    var mail = res.rowCount;
-    console.log(mail);
+  client1.query("SELECT email from users where email=$1",[userSignUp],
+  (err, result) => {
+    console.log(err, result);
+    if(result.rowCount>0){
+    res.redirect('/useralreadyexists');
+    
+    }
   }
 );
-
 //======================== VALIDATE USER IS ALREADY IN THE DATABASE SECTION END ========================//
 
 
@@ -75,18 +93,7 @@ client.query("INSERT INTO users(name, familyname, email,promocode, password)VALU
     console.log(err, res);
   }
 );
-
 //======================== INSERT USER TO DATABASE UPON REGISTRATION SECTION END ========================//
-
-
-
-
-
-
-
-
-
-
 
 
 //======================== SENDING MAIL UPON REGISTRATION SECTION ========================//
@@ -119,21 +126,27 @@ client.query("INSERT INTO users(name, familyname, email,promocode, password)VALU
     //======================== SENDING MAIL SECTION END ========================//
 
 
-    //validate that user is in database upon login
-    app.post("/login",function(req,res){
-      //======================== VARIABLES SECTION ========================//
-      let mailLogin=req.body.email;
-      let passLogin=req.body.passw;
-      //======================== VARIABLES SECTION END ========================//
-     
-    //======================== VALIDATE USER IS IN DATABASE SECTION ========================//
-    client.query("INSERT INTO users(name, familyname, email,promocode, password)VALUES($1, $2, $3,$4, crypt($5, gen_salt('md5')))",[firstname,lastname,userSignUp,promocodeForm,passSignUp],
-      (err, res) => {
-        console.log(err, res);
-      }
-    );
-  }); 
-    //======================== VALIDATE USER IS IN DATABASE SECTION END ========================//
+    //======================== VALIDATE USER IS IN DATABASE UPON LOGIN SECTION ========================//
+app.post("/login",function(req,res){
+  //======================== VARIABLES SECTION ========================//
+  let mailLogin=req.body.email;
+  let passLogin=req.body.passw;
+  //======================== VARIABLES SECTION END ========================//
+ 
+
+client.query("SELECT email from users where email=$1",[mailLogin],
+  (err, result) => {
+    console.log(err, res);
+    if(result.rowCount>0)
+    res.redirect("/dashboard");
+    else
+    res.redirect("/usernotfound");
+  }
+);
+}); 
+//======================== VALIDATE USER IS IN DATABASE UPON LOGIN SECTION END ========================//
+
+    
     
     
     
@@ -183,4 +196,6 @@ client.query("INSERT INTO users(name, familyname, email,promocode, password)VALU
 app.listen(port);
 console.log("listening....");
 client.connect()
-.then(() => console.log("Connected to database successfuly"))
+.then(() => console.log("client Connected to database successfuly"))
+client1.connect()
+.then(() => console.log("client 1 Connected to database successfuly"))

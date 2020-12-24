@@ -1,16 +1,16 @@
 
 function RegisterValFunction(){
     //gets the email and password entered
-    var firstNameField= document.getElementById("exampleFirstName");
-    var lastNameField= document.getElementById("exampleLastName");
-    var firstName= document.getElementById("exampleFirstName").value;
-    var lastName= document.getElementById("exampleLastName").value;
-    var emailField= document.getElementById("exampleInputEmail");
-    var passwordField= document.getElementById("exampleInputPassword");
-    var repasswordField= document.getElementById("exampleRepeatPassword");
-    var email= document.getElementById("exampleInputEmail").value;
-    var password= document.getElementById("exampleInputPassword").value;
-    var secondPassword=document.getElementById("exampleRepeatPassword").value;
+    var firstNameField = document.getElementById("exampleFirstName");
+    var lastNameField = document.getElementById("exampleLastName");
+    var firstName = document.getElementById("exampleFirstName").value;
+    var lastName = document.getElementById("exampleLastName").value;
+    var emailField = document.getElementById("exampleInputEmail");
+    var passwordField = document.getElementById("exampleInputPassword");
+    var repasswordField = document.getElementById("exampleRepeatPassword");
+    var email = document.getElementById("exampleInputEmail").value;
+    var password = document.getElementById("exampleInputPassword").value;
+    var secondPassword = document.getElementById("exampleRepeatPassword").value;
     var promoCode = document.getElementById("examplePromoCode").value;
     var promoCodeField = document.getElementById("examplePromoCode");
     //email validation
@@ -74,7 +74,6 @@ function RegisterValFunction(){
               
            }
            
-          
            if(password!=secondPassword){
                 
                 passwordField.title="passwords are not matched";
@@ -96,10 +95,7 @@ function RegisterValFunction(){
                promoCodeField.title="invalid promo code!!"  
                return false;
            }
-          
-        else
-        showModal();
-               //window.alert("mail with the registration info sent to your mailbox");
+                    
           return true;
         
     }

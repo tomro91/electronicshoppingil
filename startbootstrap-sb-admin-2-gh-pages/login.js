@@ -1,10 +1,10 @@
 function signInValidate() 
 { 
 var passw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
-var user = document.getElementById("exampleInputEmail").value;
-var pass = document.getElementById("exampleInputPassword").value;
-var userField = document.getElementById("exampleInputEmail");
-var passField = document.getElementById("exampleInputPassword");
+var user = document.getElementById("exampleInputEmaillogin").value;
+var pass = document.getElementById("exampleInputPasswordlogin").value;
+var userField = document.getElementById("exampleInputEmaillogin");
+var passField = document.getElementById("exampleInputPasswordlogin");
 var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 

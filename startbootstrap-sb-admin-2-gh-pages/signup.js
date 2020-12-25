@@ -82,14 +82,9 @@ function RegisterValFunction(){
                return false;
            }
 
-           if(promoCode=="")
-           {
-               promoCodeField.focus();
-               promoCodeField.title="promoCode field empty!!"  
-               return false;
-           }
-       
-           if(!promoCode.match("3XCRt")&&!promoCode.match("4DFG")&&!promoCode.match("6DSQW"))
+         
+    
+           if(!promoCode.match("3XCRt")&&!promoCode.match("4DFG")&&!promoCode.match("6DSQW")&&!promoCode.match(""))
            {
                promoCodeField.focus();
                promoCodeField.title="invalid promo code!!"  

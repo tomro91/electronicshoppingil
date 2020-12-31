@@ -157,29 +157,11 @@ app.post("/signup",function(req,res){
 
 
   
-/*app.post("/updatePass",function(req,res){
+app.post("/updatePass",function(req,res){
 
-  let password=req.body.passwordUpdate;
-  let passwordAgain=req.body.passwordUpdateAgain;
-  let mail = req.body.
-
-client.query("SELECT email,password from users where email=$1",[mailLogin],
- (err, result) => {
-  console.log(err, result);
- if(result.rowCount>0){
-   bcrypt.compare(passLogin, result.rows[0]["password"], function(err, result1) {
-     if (result1 == true) 
-     res.redirect("/dashboard");
-     else 
-     res.redirect("/usernotfound");
-  });
-
-}
-else
-res.redirect("/usernotfound");
-}
-);
-}); */
+ //TODO:implement 
+res.redirect("/updatepassword");
+});
 
 
 

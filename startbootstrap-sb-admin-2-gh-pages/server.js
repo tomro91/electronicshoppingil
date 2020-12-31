@@ -8,6 +8,7 @@ app.use(express.static(__dirname));
 const bcrypt = require('bcrypt');
 const saltRounds = 2;
 const port = 5500;
+
 const client = new Client({
   user: "postgres",
   password: "Aa123456",
@@ -16,14 +17,9 @@ const client = new Client({
   database: "postgres"
 })
 
-const client1 = new Client({
-  user: "postgres",
-  password: "Aa123456",
-  host: "localhost",
-  port: 5432,
-  database: "postgres"
-})
 
+
+ 
 
 
 //======================== GET REQUESTS SECTION ========================//
@@ -56,6 +52,11 @@ app.get("/forgotpassword",function(req,res){
 //======================== GET USER-NOT-FOUND PAGE ========================//
 app.get("/usernotfound",function(req,res){
   res.sendFile(__dirname+"/usernotfound.html",);
+    });
+
+    //======================== GET PASSWORD-UPDATE PAGE ========================//
+app.get("/updatepassword",function(req,res){
+  res.sendFile(__dirname+"/update-password.html",);
     });
 //======================== GET REQUESTS SECTION END ========================//
 
@@ -156,19 +157,35 @@ app.post("/signup",function(req,res){
 
 
   
+/*app.post("/updatePass",function(req,res){
+
+  let password=req.body.passwordUpdate;
+  let passwordAgain=req.body.passwordUpdateAgain;
+  let mail = req.body.
+
+client.query("SELECT email,password from users where email=$1",[mailLogin],
+ (err, result) => {
+  console.log(err, result);
+ if(result.rowCount>0){
+   bcrypt.compare(passLogin, result.rows[0]["password"], function(err, result1) {
+     if (result1 == true) 
+     res.redirect("/dashboard");
+     else 
+     res.redirect("/usernotfound");
+  });
+
+}
+else
+res.redirect("/usernotfound");
+}
+);
+}); */
 
 
 
-
-
-
-
-
-  
 //listening to port 5500
 app.listen(port);
 console.log("listening....");
 client.connect()
 .then(() => console.log("client Connected to database successfuly"))
-client1.connect()
-.then(() => console.log("client 1 Connected to database successfuly"))
+

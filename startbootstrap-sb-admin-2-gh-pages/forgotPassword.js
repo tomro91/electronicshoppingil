@@ -11,4 +11,5 @@ function ForgotPasswordValFunction(){
         emailField.title="you entered invalid email\nformat need to be:\n[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]@[a-zA-Z0-9-].[a-zA-Z0-9-]";
         return false;
     }
+    return true;
 }

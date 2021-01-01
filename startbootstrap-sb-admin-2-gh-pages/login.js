@@ -75,7 +75,8 @@ if(!user.match(mailformat))
         return false;  
        }
 
-      // if(flag==1)   
+      // if(flag==1)  
+      
        return true;
 }
 

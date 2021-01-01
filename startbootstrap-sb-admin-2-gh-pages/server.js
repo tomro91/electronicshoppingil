@@ -100,7 +100,6 @@ app.post("/signup",function(req,res){
             console.log(err, res);
           }
         );
-
      }
         
         let transporter = nodemailer.createTransport({

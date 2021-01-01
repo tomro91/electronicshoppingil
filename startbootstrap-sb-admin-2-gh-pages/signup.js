@@ -1,3 +1,11 @@
+/*function checkRecaptcha() {
+    var response = grecaptcha.getResponse();
+    if(response.length == 0) { 
+    }else{
+      return 1;
+    }
+  }*/
+
 
 function RegisterValFunction(){
     //gets the email and password entered
@@ -15,7 +23,7 @@ function RegisterValFunction(){
     var promoCodeField = document.getElementById("examplePromoCode");
     //email validation
     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  
+   // var flag = checkRecaptcha();
 
     if(firstName=="")
     {
@@ -90,7 +98,12 @@ function RegisterValFunction(){
                promoCodeField.title="invalid promo code!!"  
                return false;
            }
-                    
+
+         // if(flag==1)    
           return true;
+
         
     }
+
+
+ 

@@ -1,13 +1,16 @@
 const express = require('express');
+const app = express();
 const {Client} = require('pg');
 const bodyParser = require('body-parser');
-const app = express();
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:false}));
 var nodemailer = require('nodemailer');
 app.use(express.static(__dirname));
 const bcrypt = require('bcrypt');
 const saltRounds = 2;
 const port = 5500;
+
 
 const client = new Client({
   user: "postgres",
@@ -19,9 +22,6 @@ const client = new Client({
 
 
 
- 
-
-
 //======================== GET REQUESTS SECTION ========================//
 
 //======================== GET REGISTER PAGE ========================//
@@ -31,13 +31,20 @@ app.get("/signup",function(req,res){
 
 //======================== GET LOGIN PAGE ========================//
 app.get("/login",function(req,res){
-res.sendFile(__dirname+"/login.html",);
+ //if there is no cookies => go to login page
+  if(req.cookies["id"]==undefined && req.cookies["password"]==undefined && req.cookies["email"]==undefined)
+  res.sendFile(__dirname+"/login.html",);
+   
+  else
+  // else there are cookies => go to dashboard
+  res.redirect("/dashboard");
+  
   });
 
   //======================== GET DASHBOARD PAGE ========================//
-app.get("/dashboard",function(req,res){
-  res.sendFile(__dirname+"/index.html",);
-    });
+  app.get('/dashboard', (req, res) => {
+        res.sendFile(__dirname + '/index.html');
+});
 
     //======================== GET FORGOT-PASSWORD PAGE ========================//
 app.get("/forgotpassword",function(req,res){
@@ -59,10 +66,6 @@ app.get("/updatepassword",function(req,res){
   res.sendFile(__dirname+"/update-password.html",);
     });
 //======================== GET REQUESTS SECTION END ========================//
-
-
-
-
 
 
 app.post("/signup",function(req,res){
@@ -104,7 +107,7 @@ app.post("/signup",function(req,res){
             service: 'gmail',
             auth: {
               user: 'rwzntm@gmail.com',
-              pass: 'ExampleNode2011@'
+              pass: 'OrtBraude3112@'
             }
           });
                 
@@ -130,20 +133,33 @@ app.post("/signup",function(req,res){
 });
 
 
-
-
     app.post("/login",function(req,res){
 
       let mailLogin=req.body.email;
       let passLogin=req.body.passw;
-  
-    client.query("SELECT email,password from users where email=$1",[mailLogin],
+      let rememberOn=req.body.checkBox;
+
+    client.query("SELECT email,password,id from users where email=$1",[mailLogin],
      (err, result) => {
       console.log(err, result);
      if(result.rowCount>0){
        bcrypt.compare(passLogin, result.rows[0]["password"], function(err, result1) {
          if (result1 == true) 
-         res.redirect("/dashboard");
+         {
+           if(rememberOn=="on"){
+             //remember me for one day
+            res.cookie("id",result.rows[0].id,{maxAge:1*60*60*1000,httpOnly:true});
+            res.cookie("email",result.rows[0].email,{maxAge:1*60*60*1000,httpOnly:true});
+            res.cookie("password",result.rows[0].password,{maxAge:1*60*60*1000,httpOnly:true});
+           }
+           else if(rememberOn==undefined)
+           {
+             //do nothing
+           }
+          
+          res.redirect("/dashboard");
+         }
+        
          else 
          res.redirect("/usernotfound");
       });
@@ -153,7 +169,7 @@ app.post("/signup",function(req,res){
     res.redirect("/usernotfound");
   }
 );
-}); 
+});
 
 
   

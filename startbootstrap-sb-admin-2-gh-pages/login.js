@@ -1,3 +1,13 @@
+/*function checkRecaptcha() {
+    var response = grecaptcha.getResponse();
+    if(response.length == 0) { 
+    }else{
+      return 1;
+    }
+  }*/
+
+
+
 function signInValidate() 
 { 
 var passw = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
@@ -6,7 +16,8 @@ var pass = document.getElementById("exampleInputPasswordlogin").value;
 var userField = document.getElementById("exampleInputEmaillogin");
 var passField = document.getElementById("exampleInputPasswordlogin");
 var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
+const rmCheck = document.getElementById("customCheck");
+//var flag = checkRecaptcha();
 
 if(user=='')
 {
@@ -61,8 +72,13 @@ if(!user.match(mailformat))
         passField.focus();
         passField.title=msgPassword;
         
-        return false;
-          
+        return false;  
        }
+
+      // if(flag==1)   
        return true;
 }
+
+
+
+

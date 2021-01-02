@@ -43,12 +43,14 @@
         "cookie-parser": "^1.4.5",
         "cookie-session": "^1.4.0",
         "cookies": "^0.8.0",
+        "crypto": "^1.0.1",
         "datatables.net-bs4": "1.10.22",
         "express-session": "^1.17.1",
         "jquery": "3.5.1",
         "jquery.easing": "^1.4.1",
         "jsonwebtoken": "^8.5.1",
         "node-localstorage": "^2.1.6",
+        "nodemailer": "^6.4.17",
         "passport": "^0.4.1",
         "passport-remember-me": "0.0.1",
         "passport-session": "^1.0.2",
@@ -58,6 +60,7 @@
         "react-native-safe-area-context": "^3.1.9",
         "react-native-screens": "^2.16.1",
         "session": "^0.1.0",
+        "url-crypt": "^1.2.1",
         "utils": "^0.3.1"
     },
     "devDependencies": {

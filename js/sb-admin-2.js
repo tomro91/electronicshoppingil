@@ -1,3 +1,9 @@
+var userFullName = document.getElementById("userFullName");
+
+if (localStorage.userFullName && localStorage.userFullName !== "") {
+    userFullName.value = localStorage.userFullName;
+  } 
+
 (function($) {
   "use strict"; // Start of use strict
 

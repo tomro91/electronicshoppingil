@@ -47,7 +47,19 @@ app.get("/login",function(req,res){
   app.get('/dashboard', (req, res) => {
         res.sendFile(__dirname + '/index.html');
 });
-
+ //======================== GET userProfile PAGE ========================//
+app.get('/profile', (req, res) => {
+  res.sendFile(__dirname + '/userProfile.html');
+});
+app.get('/pc', (req, res) => {
+  res.sendFile(__dirname + '/pc.html');
+});
+app.get('/phone', (req, res) => {
+  res.sendFile(__dirname + '/cellPhone.html');
+});
+app.get('/aboutus', (req, res) => {
+  res.sendFile(__dirname + '/Aboutus.html');
+});
     //======================== GET FORGOT-PASSWORD PAGE ========================//
 app.get("/forgotpassword",function(req,res){
   res.sendFile(__dirname+"/forgot-password.html",);

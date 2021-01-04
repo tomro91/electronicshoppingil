@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/userProfile.css" rel="stylesheet">
 
 </head>
 
@@ -104,7 +105,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userFullName">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -136,109 +137,91 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Buy</h1>
+                        <h1 class="h3 mb-0 text-gray-800">User Profile</h1>
                         
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">PC</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <a href="pc.html"><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/desktop.jpg" alt=""></a>
-                                        
-                                    </div>
-                                   
-                                </div>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="firstName">First Name</label>
+                                <label id="firstName"></label>
                             </div>
-
-                           
-
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="lastName">Last Name</label>
+                                <label id="lastName"></label>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="phoneNumber">Phone Number</label>
+                                <label id="phoneNumber"></label>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="country">Country</label>
+                                <label id="country"></label>
+                            </div>
                         </div>
 
-                        <div class="col-lg-6 mb-4">
+                        <div class="form-row">
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="email">Email</label>
+                                <label id="email"></label>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="city">City</label>
+                                <label id="city"></label>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="street">Street</label>
+                                <label id="street"></label>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12 col-md-3 col-lg-3">
+                                <label for="zipCode">Zip code</label>
+                                <label id="zipCode"></label>
+                            </div>
+                        </div>
+                          
+                    </form>
 
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Cell phone</h6>
+                  <div class="row border-top" style="margin-bottom: 3%; margin-top: 3%;"></div>
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Change Password</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="inputOldPassword">Old password</label>
+                                    <input type="password" class="form-control" id="inputOldPassword">
                                 </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <a href="cellPhone.html"><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/mobile.jpg" alt=""></a>
-                                        
-                                    </div>
+                                
+                            </div>
                             
+                            <div class="form-row align-items-end">
+                                <div class="form-group col">
+                                    <label for="inputNewPassword">New password</label>
+                                    <input type="password" class="form-control" id="inputNewPassword">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="inputConfirmPassword">Confrim password</label>
+                                    <input type="password" class="form-control" id="inputConfirmPassword">
                                 </div>
                             </div>
-
-                           
-
+        
+                            <button type="submit" class="btn btn-primary col">Change password</button>
+                        </form>
+                    </div>
+                    <div class="col" style="margin-left: 3%;">
+                        <div id="message">
+                            <p id="oldPassEmpty" class="invalid">You must enter youre old password</p>
+                            <p id="oldPassIncorrect" class="invalid">The old password you entered is incorrect</p>
+                            <p id="matchPass" class="invalid">Password must match</p>
                         </div>
                     </div>
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Coming soon</h1>
-                        
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                      
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">TV</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/tv.jpg" alt="">
-                                        
-                                    </div>
-                                   
-                                </div>
-                            </div>
-
-                           
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Laptop</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/laptop.jpg" alt="">
-                                        
-                                    </div>
-                            
-                                </div>
-                            </div>
-
-                           
-
-                        </div>
-                    </div>
-
+                </div>
+                
 
                 </div>
                 <!-- /.container-fluid -->
@@ -296,7 +279,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/userInfo.js"></script>
+    <script src="js/userProfile.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>

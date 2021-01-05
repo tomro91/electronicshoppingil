@@ -9,8 +9,14 @@ var nodemailer = require('nodemailer');
 var urlCrypt = require('url-crypt')('~{ry*I)==yU/]9<7DPk!Hj"R#:-/Z7(hTBnlRS=4CXF');
 app.use(express.static(__dirname));
 const bcrypt = require('bcrypt');
-var crypto=require('crypto');
 const saltRounds = 2;
+//==========encrypt and decrypt=====
+const crypto = require('crypto');
+const secret = 'appSecretKey';
+const rounds = 9921;
+const keySize = 32;
+const algorithm = 'aes-256-cbc';
+const salt = crypto.createHash('sha1').update(secret).digest("hex");
 const port = 5500;
 
 
@@ -21,6 +27,47 @@ const client = new Client({
   port: 5432,
   database: "postgres"
 })
+
+//======================FUNCTIONS====================================
+function encryptData(data) {
+    try {
+    let iv = crypto.randomBytes(16);
+    let key = crypto.pbkdf2Sync(secret, salt, rounds, keySize, 'sha512');
+    let cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv);
+    let encryptedData = Buffer.concat([cipher.update(JSON.stringify(data)), cipher.final()]);
+    return iv.toString('base64') + ':' + encryptedData.toString('base64');
+    }
+    catch (err) {
+    console.error(err)
+    return false;
+    }
+  }
+
+  function decryptData(encData) {
+    try {
+    let textParts = encData.split(':');
+    let iv = Buffer.from(textParts.shift(), 'base64');
+    let encryptedData = Buffer.from(textParts.join(':'), 'base64');
+    let key = crypto.pbkdf2Sync(secret, salt, rounds, keySize, 'sha512');
+    let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key), iv);
+    let decryptedData = decipher.update(encryptedData);
+    decryptedData = Buffer.concat([decryptedData, decipher.final()]);
+    return JSON.parse(decryptedData.toString());
+    }
+    catch (err) {
+    console.error(err)
+    return false;
+    }
+    }
+    
+
+
+
+
+
+
+
+
 
 
 
@@ -81,8 +128,8 @@ app.get("/usernotfoundforgot",function(req,res){
 
     //======================== GET PASSWORD-UPDATE PAGE ========================//
     app.get("/updatepassword",function(req,res){
-      let userID=req.query.userID;
-      res.cookie("Forget",userID,{maxAge:1*60*60*1000,httpOnly:true});
+      dec= decryptData(req.query.userID);
+      res.cookie("Forget",dec['id'],{maxAge:1*60*60*1000,httpOnly:true});
       res.sendFile(__dirname+"/update-password.html",);
       });
 //======================== GET REQUESTS SECTION END ========================//
@@ -259,8 +306,9 @@ app.post("/forgotPass",function(req,res){
                 }
               });
                     var userId=result.rows[0].id;
-                    
-                    var refere='http://localhost:5500/updatepassword?userID='+userId;
+                    var obj={id:userId};
+                    enc=encryptData(obj);
+                    var refere='http://localhost:5500/updatepassword?userID='+enc;
                     var mailOptions = {
                       from: 'rwzntm@gmail.com',
                       to: email,

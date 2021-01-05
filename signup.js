@@ -21,6 +21,8 @@ function RegisterValFunction(){
     var secondPassword = document.getElementById("exampleRepeatPassword").value;
     var promoCode = document.getElementById("examplePromoCode").value;
     var promoCodeField = document.getElementById("examplePromoCode");
+   // var signUpModal = document.getElementById("exampleModal");
+
     //email validation
     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
    // var flag = checkRecaptcha();

@@ -22,6 +22,7 @@ function RegisterValFunction(){
     var promoCode = document.getElementById("examplePromoCode").value;
     var promoCodeField = document.getElementById("examplePromoCode");
    // var signUpModal = document.getElementById("exampleModal");
+   
 
     //email validation
     var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -102,7 +103,8 @@ function RegisterValFunction(){
            }
 
          // if(flag==1)
-    
+         
+         $("#exampleModal").modal("show");
           return true;
 
         

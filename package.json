@@ -1,36 +1,19 @@
 {
-    "title": "SB Admin 2",
-    "name": "startbootstrap-sb-admin-2",
-    "version": "4.1.3",
+    
+	
+    "name": "testHerku",
+    "version": "1.0.0",
+	"main":"server.js",
     "scripts": {
-        "web": "node server.js",
+       
         "start": "node server.js"
     },
     "description": "An open source Bootstrap 4 admin theme.",
-    "keywords": [
-        "css",
-        "sass",
-        "html",
-        "responsive",
-        "theme",
-        "template",
-        "admin",
-        "app"
-    ],
-    "homepage": "https://startbootstrap.com/theme/sb-admin-2",
-    "bugs": {
-        "url": "https://github.com/StartBootstrap/startbootstrap-sb-admin-2/issues",
-        "email": "feedback@startbootstrap.com"
-    },
-    "license": "MIT",
-    "author": "Start Bootstrap",
-    "contributors": [
-        "David Miller (https://davidmiller.io/)"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git"
-    },
+    "keywords": [],
+    
+    "author": "",
+ "license":"ISC",
+  
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.15.1",
         "@react-native-community/masked-view": "^0.1.10",

@@ -25,7 +25,7 @@ const client = new Client({
   password: "Aa123456",
   host: "localhost",
   port: 5432,
-  database: "postgres"
+  database: "shoppingsitedb"
 })
 
 //======================FUNCTIONS====================================

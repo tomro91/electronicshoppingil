@@ -19,7 +19,7 @@ const algorithm = 'aes-256-cbc';
 const salt = crypto.createHash('sha1').update(secret).digest("hex");
 const port = process.env.PORT;
 
-
+/*
 const client = new Client({
   user: "postgres",
   password: "Aa123456",
@@ -27,7 +27,7 @@ const client = new Client({
   port: 5432,
   database: "shoppingsitedb"
 })
-
+*/
 //======================FUNCTIONS====================================
 function encryptData(data) {
     try {

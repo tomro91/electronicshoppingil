@@ -80,10 +80,16 @@ app.get("/login",function(req,res){
   res.redirect("/dashboard");
   
   });
+  app.get("/favicon.ico",function(req,res){
+      res.redirect("/login");
+    })
+    app.get("/",function(req,res){
+      res.redirect("/login");
+    })
 
   //======================== GET DASHBOARD PAGE ========================//
   app.get('/dashboard', (req, res) => {
-        res.sendFile(__dirname + '/index.html');
+        res.sendFile(__dirname + '/dashboard.html');
 });
  //======================== GET userProfile PAGE ========================//
 app.get('/profile', (req, res) => {

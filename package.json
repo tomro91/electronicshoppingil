@@ -1,19 +1,14 @@
 {
-    
-	
     "name": "testHerku",
     "version": "1.0.0",
-	"main":"server.js",
+    "main": "server.js",
     "scripts": {
-       
         "start": "node server.js"
     },
     "description": "An open source Bootstrap 4 admin theme.",
     "keywords": [],
-    
     "author": "",
- "license":"ISC",
-  
+    "license": "ISC",
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.15.1",
         "@react-native-community/masked-view": "^0.1.10",
@@ -35,6 +30,7 @@
         "jsonwebtoken": "^8.5.1",
         "node-localstorage": "^2.1.6",
         "nodemailer": "^6.4.17",
+        "nodemailer-smtp-transport": "^2.7.4",
         "passport": "^0.4.1",
         "passport-remember-me": "0.0.1",
         "passport-session": "^1.0.2",

@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:false}));
 var nodemailer = require('nodemailer');
+var smtpTransport=require('nodemailer-smtp-transport');
 var urlCrypt = require('url-crypt')('~{ry*I)==yU/]9<7DPk!Hj"R#:-/Z7(hTBnlRS=4CXF');
 app.use(express.static(__dirname));
 const bcrypt = require('bcrypt');
@@ -17,15 +18,16 @@ const rounds = 9921;
 const keySize = 32;
 const algorithm = 'aes-256-cbc';
 const salt = crypto.createHash('sha1').update(secret).digest("hex");
-const port = process.env.PORT||3000;
+const host = '0.0.0.0';
+const port = process.env.PORT||3000 ;
 
 
 const client = new Client({
-  user: "postgres",
-  password: "Aa123456",
-  host: "localhost",
+  user: "uxutkqppeiihfi",
+  password: "7556fa45fb6e4cc26be0ca1219e2e99072934d1e293b968d7a060e03505ba864",
+  host: "ec2-176-34-114-78.eu-west-1.compute.amazonaws.com",
   port: 5432,
-  database: "shoppingsitedb"
+  database: "d2831bevpqn6sp"
 })
 
 //======================FUNCTIONS====================================
@@ -68,7 +70,12 @@ function encryptData(data) {
 app.get("/signup",function(req,res){
   res.sendFile(__dirname+"/register.html",);
     });
-
+app.get("/favicon.ico",function(req,res){
+  res.redirect("/login");
+})
+app.get("/",function(req,res){
+  res.redirect("/login");
+})
 //======================== GET LOGIN PAGE ========================//
 app.get("/login",function(req,res){
  //if there is no cookies => go to login page
@@ -80,12 +87,6 @@ app.get("/login",function(req,res){
   res.redirect("/dashboard");
   
   });
-  app.get("/favicon.ico",function(req,res){
-      res.redirect("/login");
-    })
-    app.get("/",function(req,res){
-      res.redirect("/login");
-    })
 
   //======================== GET DASHBOARD PAGE ========================//
   app.get('/dashboard', (req, res) => {
@@ -166,8 +167,8 @@ app.post("/signup",function(req,res){
         );
      }
         
-        let transporter = nodemailer.createTransport({
-            service: 'gmail',
+        var transporter = nodemailer.createTransport("SMTP",{
+ 
             auth: {
               user: 'rwzntm@gmail.com',
               pass: 'OrtBraude3112@'
@@ -189,6 +190,8 @@ app.post("/signup",function(req,res){
                     console.log('Email sent: ' + info.response);
                   }
               });
+              
+             res.redirect("/login");
     });//hash
 });//salt
 }//else
@@ -336,7 +339,7 @@ app.post("/forgotPass",function(req,res){
 
 
 //listening to port 5500
-app.listen(port);
+app.listen(process.env.PORT||5000,host);
 console.log("listening....");
 client.connect()
 .then(() => console.log("client Connected to database successfuly"))

@@ -18,7 +18,6 @@ const rounds = 9921;
 const keySize = 32;
 const algorithm = 'aes-256-cbc';
 const salt = crypto.createHash('sha1').update(secret).digest("hex");
-const host = '0.0.0.0';
 const port = process.env.PORT||3000 ;
 
 
@@ -166,7 +165,7 @@ app.post("/signup",function(req,res){
           }
         );
      }
-        
+        /*
         var transporter = nodemailer.createTransport("SMTP",{
  
             auth: {
@@ -190,7 +189,7 @@ app.post("/signup",function(req,res){
                     console.log('Email sent: ' + info.response);
                   }
               });
-              
+              */
              res.redirect("/login");
     });//hash
 });//salt
@@ -339,7 +338,7 @@ app.post("/forgotPass",function(req,res){
 
 
 //listening to port 5500
-app.listen(process.env.PORT||5000,host);
+app.listen(process.env.PORT||5000);
 console.log("listening....");
 client.connect()
 .then(() => console.log("client Connected to database successfuly"))

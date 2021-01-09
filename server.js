@@ -72,10 +72,10 @@ app.get("/signup",function(req,res){
     });
 app.get("/favicon.ico",function(req,res){
   res.redirect("/login");
-})
+});
 app.get("/",function(req,res){
   res.redirect("/login");
-})
+});
 //======================== GET LOGIN PAGE ========================//
 app.get("/login",function(req,res){
  //if there is no cookies => go to login page

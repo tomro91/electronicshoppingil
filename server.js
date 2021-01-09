@@ -165,8 +165,8 @@ app.post("/signup",function(req,res){
           }
         );
      }
-        /*
-        var transporter = nodemailer.createTransport("SMTP",{
+        
+        var transporter = nodemailer.createTransport({
  
             auth: {
               user: 'rwzntm@gmail.com',
@@ -189,7 +189,7 @@ app.post("/signup",function(req,res){
                     console.log('Email sent: ' + info.response);
                   }
               });
-              */
+              
              res.redirect("/login");
     });//hash
 });//salt

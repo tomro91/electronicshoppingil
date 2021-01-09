@@ -23,11 +23,11 @@ const port = process.env.PORT||3000 ;
 
 
 const client = new Client({
-  user: "uxutkqppeiihfi",
-  password: "7556fa45fb6e4cc26be0ca1219e2e99072934d1e293b968d7a060e03505ba864",
-  host: "ec2-176-34-114-78.eu-west-1.compute.amazonaws.com",
+  user: "spvctjlqlzotto",
+  password: "ed49a8de4d2d21a549e799a012ad8ef8764ed23a73cf42845426e457cfa054e9",
+  host: "ec2-52-30-161-203.eu-west-1.compute.amazonaws.com",
   port: 5432,
-  database: "d2831bevpqn6sp"
+  database: "d4kebjdrls4b3m"
 })
 
 //======================FUNCTIONS====================================

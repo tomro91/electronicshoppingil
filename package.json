@@ -10,8 +10,13 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.0.0",
+        "cookie-parser": "^1.4.5",
         "express": "^4.17.1",
-        "pg": "^8.5.1"
+        "nodemailer": "^6.4.17",
+        "nodemailer-smtp-transport": "^2.7.4",
+        "pg": "^8.5.1",
+        "url-crypt": "^1.2.1"
     },
     "devDependencies": {
         "browser-sync": "2.26.13",

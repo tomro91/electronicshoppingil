@@ -70,6 +70,9 @@ app.get("/signup",function(req,res){
     });
 
 //======================== GET LOGIN PAGE ========================//
+app.get("/",function(req,res){
+  res.redirect("login.html",);
+})
 app.get("/login",function(req,res){
  //if there is no cookies => go to login page
   if(req.cookies["id"]==undefined && req.cookies["password"]==undefined && req.cookies["email"]==undefined)
@@ -83,7 +86,7 @@ app.get("/login",function(req,res){
 
   //======================== GET DASHBOARD PAGE ========================//
   app.get('/dashboard', (req, res) => {
-        res.sendFile(__dirname + '/index.html');
+        res.sendFile(__dirname + '/dashboard.html');
 });
  //======================== GET userProfile PAGE ========================//
 app.get('/profile', (req, res) => {
@@ -195,6 +198,7 @@ app.post("/signup",function(req,res){
       let mailLogin=req.body.email;
       let passLogin=req.body.passw;
       let rememberOn=req.body.checkBox;
+      let firstName=req.body
 
     client.query("SELECT email,password,id from users where email=$1",[mailLogin],
      (err, result) => {
@@ -327,6 +331,10 @@ app.post("/forgotPass",function(req,res){
      });
 });
 
+app.get("/getdata", function(req,res){
+  client.query("SELECT name,familyname from users where id=2 ")
+  console.log(res)
+})
 
 
 //listening to port 5500
